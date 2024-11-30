@@ -1,0 +1,45 @@
+{
+  "title": "Frequently Asked Questions (FAQ)",
+  "faqs": [
+    {
+      "question": "Bagaimana cara memesan ruangan?",
+      "answer": "Untuk memesan ruangan, Anda dapat melakukannya langsung melalui website dengan memilih tanggal dan durasi penggunaan ruangan. Proses pemesanan sangat mudah dan cepat."
+    },
+    {
+      "question": "Bagaimana cara mengetahui ketersediaan ruangan?",
+      "answer": "Kami menyediakan kalender yang menunjukkan ketersediaan ruangan secara real-time. Anda dapat melihat tanggal-tanggal yang tersedia untuk pemesanan langsung di kalender tersebut."
+    },
+    {
+      "question": "Metode pembayaran apa yang diterima?",
+      "answer": "Saat ini, kami hanya menerima pembayaran melalui aplikasi Dana. Proses pembayaran dapat dilakukan dengan mudah setelah Anda mengkonfirmasi pemesanan ruangan."
+    },
+    {
+      "question": "Apakah saya bisa membatalkan pemesanan setelah konfirmasi?",
+      "answer": "Pembatalan pemesanan bisa dilakukan dalam waktu tertentu sesuai dengan kebijakan kami. Silakan hubungi tim dukungan untuk informasi lebih lanjut terkait pembatalan pemesanan."
+    },
+    {
+      "question": "Apakah ada diskon untuk pemesanan lebih dari satu ruangan?",
+      "answer": "Saat ini, kami tidak menawarkan diskon untuk pemesanan lebih dari satu ruangan. Namun, kami akan terus memperbarui penawaran kami, jadi pastikan untuk memeriksa pembaruan di website."
+    },
+    {
+      "question": "Apakah saya bisa melihat fasilitas ruangan sebelum memesan?",
+      "answer": "Ya, di halaman detail setiap ruangan kami menyediakan informasi lengkap mengenai fasilitas yang tersedia. Anda juga dapat melihat foto-foto ruangan untuk mendapatkan gambaran lebih jelas."
+    },
+    {
+      "question": "Berapa lama durasi maksimum pemesanan?",
+      "answer": "Durasi maksimum pemesanan dapat bervariasi tergantung pada jenis ruangan dan ketersediaan. Biasanya, durasi pemesanan adalah 1 hingga 8 jam. Anda dapat memilih durasi sesuai kebutuhan saat melakukan pemesanan."
+    },
+    {
+      "question": "Apakah saya perlu membayar di muka saat melakukan pemesanan?",
+      "answer": "Ya, pembayaran dilakukan di muka melalui Dana setelah Anda memilih ruangan dan durasi yang diinginkan. Setelah pembayaran diterima, pemesanan akan dikonfirmasi."
+    },
+    {
+      "question": "Bagaimana cara menghubungi tim dukungan jika saya mengalami masalah saat pemesanan?",
+      "answer": "Jika Anda mengalami masalah, Anda dapat menghubungi tim dukungan melalui fitur \"Hubungi Kami\" di website atau mengirim email ke support@platform.com."
+    },
+    {
+      "question": "Apakah ada batasan untuk jumlah peserta dalam acara?",
+      "answer": "Setiap ruangan memiliki kapasitas maksimum peserta yang berbeda-beda. Anda dapat memeriksa kapasitas tersebut pada halaman detail ruangan sebelum melakukan pemesanan untuk memastikan ruangan sesuai dengan kebutuhan acara Anda."
+    }
+  ]
+}
