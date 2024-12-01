@@ -24,8 +24,8 @@ export default function Register() {
                 <Input<UserRegisterDTO> label="Email" name="email" type="text" register={register} requireMsg="Email is required" placeholder="Email" />
                 <Input<UserRegisterDTO> label="Password" name="password" type="text" register={register} requireMsg="Password is required" placeholder="Password" />
                 <div className="mb-3">
-                  <label htmlFor="confirmPassword" className="form-label">Konfirmasi Password</label>
-                  <input type="password" className="form-control" id="confirmPassword" placeholder="Konfirmasi Password" required />
+                  <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
+                  <input type="password" className="form-control" id="confirmPassword" placeholder="Confirm Password" required />
                 </div>
                 <button type="submit" className="btn btn-primary w-100">Register</button>
               </form>

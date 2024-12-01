@@ -34,7 +34,7 @@ export default function WorkspaceCard({workspace}: WorkspaceCardProps) {
           </ul>
         </div>
         <div className="card-footer text-center">
-          <a href="ruang.html" className="btn btn-warning text-black">
+          <a href="/workspaces/1" className="btn btn-warning text-black">
             Lihat Ruangan
           </a>
         </div>

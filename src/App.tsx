@@ -10,6 +10,9 @@ import NotFound from "./pages/notfound";
 import Article from "./pages/article";
 import Login from "./pages/auth/login";
 import Register from "./pages/auth/register";
+import DetailArticle from "./pages/article/detail";
+import DetailWorkspace from "./pages/workspaces/detail";
+import Profile from "./pages/users/profile";
 
 const pages = [
   {
@@ -26,6 +29,21 @@ const pages = [
     path: '/articles',
     render: <Article/>,
     title: 'Article'
+  },
+  {
+    path: '/articles/:id',
+    render: <DetailArticle/>,
+    title: `Article Detail`
+  },
+  {
+    path: '/workspaces/:id',
+    render: <DetailWorkspace/>,
+    title: `Workspace Detail`
+  },
+  {
+    path: '/profile',
+    render: <Profile/>,
+    title: 'Profile'
   },
   {
     path: '/auth/login',
