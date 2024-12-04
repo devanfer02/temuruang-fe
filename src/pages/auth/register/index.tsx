@@ -13,7 +13,7 @@ export default function Register() {
 
   const onSubmit = async (cred: UserRegisterDTO) => {
     try {
-      const [success, message] = await authRegsiter(cred);
+      const [success, _] = await authRegsiter(cred);
 
       if (!success) {
         setError("Server error")

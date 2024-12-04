@@ -27,7 +27,7 @@ export default function Profile() {
   }
 
   const onUpdate = async (data: UserRegisterDTO) => {
-    const [success, message] = await updateUser( getToken(),data);
+    const [success, _] = await updateUser( getToken(),data);
 
     if (!success) {
       return ;
