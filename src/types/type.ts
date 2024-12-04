@@ -11,7 +11,16 @@ export type Workspace = {
     updatedAt: string 
 }
 
-export type Article = {}
+export type Article = {
+    id: number
+    userId: string 
+    title: string 
+    description: string 
+    photoLink: string 
+    createdAt: string 
+    updatedAt: string 
+    user: User
+}
 
 export type User = {
     fullname: string 

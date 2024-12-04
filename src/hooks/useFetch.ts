@@ -5,6 +5,7 @@ type FetchResult<T> = {
     data: T | null 
     error: unknown 
     loading: boolean
+    meta: any
 }
 
 type HeaderParams = {
@@ -13,6 +14,7 @@ type HeaderParams = {
 
 function useFetch<T>(url: string, headers?: HeaderParams): FetchResult<T>  {
     const [data, setData] = useState<T | null>(null);
+    const [meta, setMeta] = useState(null);
     const [error, setError] = useState<unknown>(null);
     const [loading, setLoading] = useState<boolean>(true);
 
@@ -31,16 +33,19 @@ function useFetch<T>(url: string, headers?: HeaderParams): FetchResult<T>  {
                 }
                 setLoading(false);
                 setData(res.data.data)
+                if(res.data.meta) {
+                    setMeta(res.data.meta);
+                }
             };
 
             fetchData();
         }, [url]);
 
-        return { data, loading, error };
+        return { data, loading, error, meta };
     } catch (err) {
         console.error(err)
         setError((err as Error).message)
-        return { data, loading, error}
+        return { data, loading, error, meta }
     }
 }
 
