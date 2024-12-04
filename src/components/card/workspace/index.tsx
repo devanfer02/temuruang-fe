@@ -1,7 +1,7 @@
 import {Workspace} from '../../../types/type'
 
 interface WorkspaceCardProps {
-  workspace?: Workspace
+  workspace: Workspace
 }
 
 export default function WorkspaceCard({workspace}: WorkspaceCardProps) {
@@ -10,32 +10,34 @@ export default function WorkspaceCard({workspace}: WorkspaceCardProps) {
       <div className="card h-100">
         <img
           src="https://via.placeholder.com/350x200"
-          className="card-img-top"
+          className="card-img-top max-h-[350px]"
           alt="Ruangan Image"
         />
         <div className="card-body">
-          <h5 className="card-title fw-semibold">Aula Utama</h5>
+          <h5 className="card-title fw-semibold">
+            {workspace.name}
+          </h5>
           <p className="card-text">
-            Aula Utama dengan kapasitas hingga 500 orang. Cocok untuk seminar atau konferensi.
+            {workspace.description}
           </p>
           <ul className="list-unstyled">
             <li>
-              <strong>Lokasi:</strong> Bandung, Indonesia
+              <strong>Location:</strong> {workspace.location}
             </li>
             <li>
-              <strong>Kapasitas:</strong> 500 orang
+              <strong>Capacity:</strong> {workspace.capacity}
             </li>
             <li>
-              <strong>Harga:</strong> Rp 8.000.000 per hari
+              <strong>Price:</strong> $ {workspace.price} per day
             </li>
             <li>
-              <strong>Tipe:</strong> Indoor
+              <strong>Type:</strong> {workspace.type}
             </li>
           </ul>
         </div>
         <div className="card-footer text-center">
-          <a href="/workspaces/1" className="btn btn-warning text-black">
-            Lihat Ruangan
+          <a href={`/workspaces/${workspace.id}`} className="btn btn-warning text-black">
+            See Workspace
           </a>
         </div>
       </div>

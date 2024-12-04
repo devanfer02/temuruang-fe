@@ -8,3 +8,7 @@ export type UserRegisterDTO = {
     email: string;
     password: string;
 }
+
+export type WorkspaceParams = {
+    id: number
+}

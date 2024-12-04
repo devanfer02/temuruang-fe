@@ -1,4 +1,28 @@
+import { useParams } from 'react-router-dom'
+import useFetch from '../../hooks/useFetch'
+import { Workspace } from '../../types/type'
+
 export default function DetailWorkspace() {
+  const { id } = useParams()
+
+  const { data: workspace, loading } = useFetch<Workspace>(`${import.meta.env.VITE_API_URL}/api/workspaces/${id}`)
+
+  if (workspace == null) {
+    return (
+      <div className='tw-h-screen tw-flex tw-justify-center tw-items-center tw-self-center'>
+        <h1>Error</h1>
+      </div>
+    )
+  }
+
+  if (loading) {
+    return (
+      <div className='tw-h-screen tw-flex tw-justify-center tw-items-center tw-self-center'>
+        <h1>Loading</h1>
+      </div>
+    )
+  }
+
   return (
     <div className="container my-5">
     <div className="row">
@@ -6,22 +30,24 @@ export default function DetailWorkspace() {
         <div className="card mb-4">
           <img src="https://via.placeholder.com/350x200" className="card-img-top" alt="Ruangan Image"/>
           <div className="card-body">
-            <h5 className="card-title fw-semibold">Aula Utama</h5>
-            <p className="card-text">Aula Utama dengan kapasitas hingga 500 orang. Cocok untuk seminar atau konferensi.
+            <h5 className="card-title fw-semibold">
+              {workspace.name}
+            </h5>
+            <p className="card-text">
+            {workspace.description}
             </p>
             <ul className="list-unstyled">
-              <li><strong>Lokasi:</strong> Bandung, Indonesia</li>
-              <li><strong>Kapasitas:</strong> 500 orang</li>
-              <li><strong>Harga:</strong> Rp 8.000.000 per hari</li>
-              <li><strong>Tipe:</strong> Indoor</li>
+              <li><strong>Location:</strong> {workspace.location}</li>
+              <li><strong>Capacity:</strong> {workspace.capacity}</li>
+              <li><strong>Price:</strong> $ {workspace.price} per hari</li>
+              <li><strong>Type:</strong> {workspace.type}</li>
             </ul>
           </div>
           <div className="card-footer text-center d-flex justify-content-center w-100">
             <button className="btn btn-warning text-black mx-2" data-bs-toggle="modal"
-              data-bs-target="#bookingModal">Pesen
-              Ruangan</button>
+              data-bs-target="#bookingModal">Book Workspace</button>
             <button type="button" className="btn btn-primary mx-2" data-bs-toggle="modal" data-bs-target="#chatModal">
-              Buka Chat
+              Open Chat
             </button>
           </div>
         </div>
