@@ -1,12 +1,23 @@
+import { useAuth } from "../../../components/context/AuthContext";
 import Input from "../../../components/input";
-import { UserLoginDTO } from "../../../types/type";
+import { UserLoginDTO } from "../../../types/dto";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const { register, handleSubmit } = useForm<UserLoginDTO>()
+  const { login, loading } = useAuth();
+  const navigate = useNavigate();
 
   const onSubmit = async (data: UserLoginDTO) => {
+    const result = await login(data);
 
+    if (!result && !loading) {
+      console.log("ready here!")
+      return 
+    }
+
+    navigate('/', { replace: true })
   }
 
   return (
@@ -21,7 +32,7 @@ export default function Login() {
             <div className="col-md-6">
               <form action="" method="POST" onSubmit={handleSubmit(onSubmit)}>
                 <Input<UserLoginDTO> label="Email" name="email" type="text" register={register} requireMsg="Order is required" placeholder="Email" />
-                <Input<UserLoginDTO> label="Password" name="password" type="text" register={register} requireMsg="Order is required" placeholder="Password" />
+                <Input<UserLoginDTO> label="Password" name="password" type="password" register={register} requireMsg="Order is required" placeholder="Password" />
                 <button type="submit" className="btn btn-primary w-100">Login</button>
               </form>
               <div className="text-center mt-3">

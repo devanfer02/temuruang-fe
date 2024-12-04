@@ -1,12 +1,29 @@
 import Input from "../../../components/input";
-import { UserRegisterDTO } from "../../../types/type";
+import { authRegsiter } from "../../../services/auth";
+import { UserRegisterDTO } from "../../../types/dto";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
   const { register, handleSubmit } = useForm<UserRegisterDTO>()
+  const navigate = useNavigate();
 
-  const onSubmit = async (data: UserRegisterDTO) => {
+  const onSubmit = async (cred: UserRegisterDTO) => {
+    try {
+      const [success, message] = await authRegsiter(cred);
 
+      if (!success) {
+        return 
+      }
+
+      
+    } catch (err) {
+      console.error(err);
+      return 
+    }
+
+
+    navigate("/auth/login", { replace: true})
   }
 
   return (
@@ -22,7 +39,7 @@ export default function Register() {
               <form action="" method="POST" onSubmit={handleSubmit(onSubmit)}>
                 <Input<UserRegisterDTO> label="Fullname" name="fullname" type="text" register={register} requireMsg="Fullname is required" placeholder="Fullname" />
                 <Input<UserRegisterDTO> label="Email" name="email" type="text" register={register} requireMsg="Email is required" placeholder="Email" />
-                <Input<UserRegisterDTO> label="Password" name="password" type="text" register={register} requireMsg="Password is required" placeholder="Password" />
+                <Input<UserRegisterDTO> label="Password" name="password" type="password" register={register} requireMsg="Password is required" placeholder="Password" />
                 <div className="mb-3">
                   <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
                   <input type="password" className="form-control" id="confirmPassword" placeholder="Confirm Password" required />
