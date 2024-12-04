@@ -4,7 +4,7 @@ export type Workspace = {
     description: string 
     location: string 
     capacity: number 
-    imageLink: string;
+    imageLink: string
     type: string 
     price: number 
     createdAt: string 
@@ -12,3 +12,9 @@ export type Workspace = {
 }
 
 export type Article = {}
+
+export type User = {
+    fullname: string 
+    email: string
+    createdAt: string 
+}

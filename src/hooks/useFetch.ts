@@ -7,7 +7,11 @@ type FetchResult<T> = {
     loading: boolean
 }
 
-function useFetch<T>(url: string): FetchResult<T>  {
+type HeaderParams = {
+    Authorization: string 
+}
+
+function useFetch<T>(url: string, headers?: HeaderParams): FetchResult<T>  {
     const [data, setData] = useState<T | null>(null);
     const [error, setError] = useState<unknown>(null);
     const [loading, setLoading] = useState<boolean>(true);
@@ -16,7 +20,9 @@ function useFetch<T>(url: string): FetchResult<T>  {
         useEffect(() => {
             const fetchData = async () => {
                 setLoading(true);
-                const res = await axios.get(url);
+                const res = await axios.get(url, {
+                    headers: headers
+                });
 
                 if (res.status != 200) {
                     setError("failed to fetch data")

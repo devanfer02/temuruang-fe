@@ -2,13 +2,38 @@ import { useForm } from "react-hook-form"
 import { useAuth } from "../../../components/context/AuthContext"
 import Input from "../../../components/input"
 import { UserRegisterDTO } from "../../../types/dto"
+import { updateUser } from "../../../services/users";
+import useFetch from "../../../hooks/useFetch";
+import Loading from "../../../components/loading/loading";
+import { User } from "../../../types/type";
 
 export default function Profile() {
   const { register, handleSubmit } = useForm<UserRegisterDTO>();
-  const { user } = useAuth()
+  const { getToken } = useAuth()
+  const { data:user, loading, error } = useFetch<User>(`${import.meta.env.VITE_API_URL}/api/users/profile`, {
+    Authorization: `Bearer ${getToken()}`
+  }) 
+
+  if (loading) {
+    return <Loading/>
+  }
+
+  if (user == null || error) {
+    return (
+      <div>
+        <h1>Error</h1>
+      </div>
+    )
+  }
 
   const onUpdate = async (data: UserRegisterDTO) => {
+    const [success, message] = await updateUser( getToken(),data);
 
+    if (!success) {
+      return ;
+    }
+
+    window.location.reload()
   }
 
   return (
@@ -23,7 +48,7 @@ export default function Profile() {
               </div>
               <div className="card-body">
                 <p><strong>Name:</strong> {user.fullname}</p>
-                <p><strong>Email:</strong> {user.sub}</p>
+                <p><strong>Email:</strong> {user.email}</p>
                 <button className="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#editProfile">Edit Profil</button>
               </div>
             </div>
@@ -61,10 +86,10 @@ export default function Profile() {
             </div>
             <div className="modal-body">
               <form action="" method="POST" onSubmit={handleSubmit(onUpdate)}>
-                <Input<UserRegisterDTO> label="Fullname" name="fullname" type="text" register={register} requireMsg="Fullname is required" placeholder="Fullname" />
-                <Input<UserRegisterDTO> label="Email" name="email" type="text" register={register} requireMsg="Email is required" placeholder="Email" />
-                <Input<UserRegisterDTO> label="Password" name="password" type="password" register={register} requireMsg="Password is required" placeholder="Password" />
-                <button type="submit" className="btn btn-primary w-100">Register</button>
+                <Input<UserRegisterDTO> label="Fullname" name="fullname" type="text" register={register} requireMsg="Fullname is required" placeholder="Fullname" defaultValue={user.fullname}/>
+                <Input<UserRegisterDTO> label="Email" name="email" type="text" register={register} requireMsg="Email is required" placeholder="Email" defaultValue={user.email}/>
+                <Input<UserRegisterDTO> label="Password" name="password" type="password" register={register} placeholder="Password" defaultValue={""}/>
+                <button type="submit" className="btn btn-primary w-100">Update</button>
               </form>
             </div>
           </div>
