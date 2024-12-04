@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { UserLoginDTO } from "../../types/dto";
 import { authLogin } from "../../services/auth";
 import { jwtDecode } from "jwt-decode";
@@ -19,7 +19,15 @@ const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<any>(null);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem("user");
+    if (storedToken) {
+      setUser(jwtDecode(storedToken))
+    }
+    setLoading(false)
+  }, [])
 
   const login = async (cred: UserLoginDTO): Promise<boolean> => {
     setLoading(true);

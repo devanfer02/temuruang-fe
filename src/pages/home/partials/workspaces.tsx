@@ -15,7 +15,7 @@ export default function Workspaces() {
 
   if (loading) {
     return (
-      <div>
+      <div className="tw-h-screen">
         <h1>Loading</h1>
       </div>
     )

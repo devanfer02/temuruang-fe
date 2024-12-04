@@ -1,18 +1,22 @@
+import { useState } from "react";
 import Input from "../../../components/input";
 import { authRegsiter } from "../../../services/auth";
 import { UserRegisterDTO } from "../../../types/dto";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import Alert from "../../../components/alert";
 
 export default function Register() {
   const { register, handleSubmit } = useForm<UserRegisterDTO>()
   const navigate = useNavigate();
+  const [ error, setError ] = useState<string | null>(null);
 
   const onSubmit = async (cred: UserRegisterDTO) => {
     try {
       const [success, message] = await authRegsiter(cred);
 
       if (!success) {
+        setError("Server error")
         return 
       }
 
@@ -49,6 +53,12 @@ export default function Register() {
               <div className="text-center mt-3">
                 <p>Already have an account? <a href="/auth/login">Login</a></p>
               </div>
+              { error && (
+                <Alert
+                  message={error}
+                  onClick={() => setError(null)}
+                />
+              )}
             </div>
           </div>
         </div>

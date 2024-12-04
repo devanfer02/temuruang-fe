@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
@@ -7,15 +7,22 @@ interface ProtectedLayoutProps {
 }
 
 export default function ProtectedLayout({children}: ProtectedLayoutProps) {
-  const { isAuthenticated } = useAuth()
+  const { isAuthenticated, loading } = useAuth()
   const navigate = useNavigate()
-  
+
+  useEffect(() => {
+    if (!isAuthenticated && !loading) {
+      navigate('/', { replace: true })
+    }
+  }, [isAuthenticated, navigate])
+
   if (!isAuthenticated) {
-    navigate(-1)
-    return 
+    return null; 
   }
 
   return (
+    <>
     {children}
+    </>
   )
 }

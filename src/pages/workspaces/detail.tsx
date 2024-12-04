@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom'
 import useFetch from '../../hooks/useFetch'
 import { Workspace } from '../../types/type'
+import Loading from '../../components/loading/loading'
 
 export default function DetailWorkspace() {
   const { id } = useParams()
@@ -17,9 +18,7 @@ export default function DetailWorkspace() {
 
   if (loading) {
     return (
-      <div className='tw-h-screen tw-flex tw-justify-center tw-items-center tw-self-center'>
-        <h1>Loading</h1>
-      </div>
+      <Loading/>
     )
   }
 

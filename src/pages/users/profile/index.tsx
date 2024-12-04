@@ -1,4 +1,16 @@
+import { useForm } from "react-hook-form"
+import { useAuth } from "../../../components/context/AuthContext"
+import Input from "../../../components/input"
+import { UserRegisterDTO } from "../../../types/dto"
+
 export default function Profile() {
+  const { register, handleSubmit } = useForm<UserRegisterDTO>();
+  const { user } = useAuth()
+
+  const onUpdate = async (data: UserRegisterDTO) => {
+
+  }
+
   return (
     <>
       <div className="container my-5">
@@ -7,11 +19,11 @@ export default function Profile() {
           <div className="col-md-8">
             <div className="card mb-4">
               <div className="card-header">
-                <h5 className="card-title">Informasi Akun</h5>
+                <h5 className="card-title">Account Information</h5>
               </div>
               <div className="card-body">
-                <p><strong>Nama:</strong> Tade Gina</p>
-                <p><strong>Email:</strong> tadegina@gmail.com</p>
+                <p><strong>Name:</strong> {user.fullname}</p>
+                <p><strong>Email:</strong> {user.sub}</p>
                 <button className="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#editProfile">Edit Profil</button>
               </div>
             </div>
@@ -48,20 +60,11 @@ export default function Profile() {
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
-              <form>
-                <div className="mb-3">
-                  <label htmlFor="exampleInputPassword1" className="form-label">Fullname</label>
-                  <input type="text" className="form-control" id="exampleInputPassword1" name="fullname" />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-                  <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-                  <input type="password" className="form-control" id="exampleInputPassword1" />
-                </div>
-                <button type="submit" className="btn btn-primary w-100">Update</button>
+              <form action="" method="POST" onSubmit={handleSubmit(onUpdate)}>
+                <Input<UserRegisterDTO> label="Fullname" name="fullname" type="text" register={register} requireMsg="Fullname is required" placeholder="Fullname" />
+                <Input<UserRegisterDTO> label="Email" name="email" type="text" register={register} requireMsg="Email is required" placeholder="Email" />
+                <Input<UserRegisterDTO> label="Password" name="password" type="password" register={register} requireMsg="Password is required" placeholder="Password" />
+                <button type="submit" className="btn btn-primary w-100">Register</button>
               </form>
             </div>
           </div>

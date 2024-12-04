@@ -14,6 +14,15 @@ import DetailArticle from "./pages/article/detail";
 import DetailWorkspace from "./pages/workspaces/detail";
 import Profile from "./pages/users/profile";
 import { AuthProvider } from "./components/context/AuthContext";
+import ProtectedLayout from "./components/layout/protected";
+
+const protectedPages = [
+  {
+    path: '/profile',
+    render: <Profile/>,
+    title: 'Profile'
+  }
+]
 
 const pages = [
   {
@@ -40,11 +49,6 @@ const pages = [
     path: '/workspaces/:id',
     render: <DetailWorkspace />,
     title: `Workspace Detail`
-  },
-  {
-    path: '/profile',
-    render: <Profile />,
-    title: 'Profile'
   },
   {
     path: '/auth/login',
@@ -74,6 +78,16 @@ export default function App() {
                 {page.render}
               </Layout>
             } />
+          ))}
+          {protectedPages.map(page => (
+            <Route key={page.path} path={page.path} element={
+              <Layout title={page.title}>
+                <ProtectedLayout>
+                  {page.render}
+                </ProtectedLayout>
+              </Layout>
+            }>
+            </Route>
           ))}
         </Routes>
       </Router>

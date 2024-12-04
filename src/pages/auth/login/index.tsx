@@ -1,19 +1,23 @@
+import { useState } from "react";
 import { useAuth } from "../../../components/context/AuthContext";
 import Input from "../../../components/input";
 import { UserLoginDTO } from "../../../types/dto";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import Alert from "../../../components/alert";
 
 export default function Login() {
   const { register, handleSubmit } = useForm<UserLoginDTO>()
   const { login, loading } = useAuth();
+  const [ error, setError ] = useState<string | null>(null)
   const navigate = useNavigate();
 
   const onSubmit = async (data: UserLoginDTO) => {
+    setError(null)
     const result = await login(data);
 
     if (!result && !loading) {
-      console.log("ready here!")
+      setError("Invalid email or password");
       return 
     }
 
@@ -36,8 +40,14 @@ export default function Login() {
                 <button type="submit" className="btn btn-primary w-100">Login</button>
               </form>
               <div className="text-center mt-3">
-                <p>Don't have an account? <a href="/auth/register">Login</a></p>
+                <p>Don't have an account? <a href="/auth/register">Register</a></p>
               </div>
+              {error && (
+                <Alert
+                  message={error}
+                  onClick={() => setError(null)}
+                />
+              )}
             </div>
           </div>
         </div>
