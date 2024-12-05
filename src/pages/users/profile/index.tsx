@@ -2,8 +2,8 @@ import { useAuth } from "../../../components/context/AuthContext"
 import useFetch from "../../../hooks/useFetch";
 import Loading from "../../../components/loading/loading";
 import { User } from "../../../types/type";
-import UserBookings from "./bookings";
-import UpdateUserForm from "./updateform";
+import UserBookings from "./partials/bookings";
+import UpdateUserForm from "./partials/updateform";
 
 export default function Profile() {
   

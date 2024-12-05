@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
-import { UserRegisterDTO } from "../../../types/dto";
-import { updateUser } from "../../../services/users";
-import { useAuth } from "../../../components/context/AuthContext";
-import Input from "../../../components/input";
-import { User } from "../../../types/type";
+import { UserRegisterDTO } from "../../../../types/dto";
+import { updateUser } from "../../../../services/users";
+import { useAuth } from "../../../../components/context/AuthContext";
+import Input from "../../../../components/input";
+import { User } from "../../../../types/type";
 
 interface UpdateFormProps {
   user: User
