@@ -28,7 +28,7 @@ const pages = [
   {
     path: '/',
     render: <Home />,
-    title: 'Temuruang'
+    title: 'TemuRuang'
   },
   {
     path: '/faq',

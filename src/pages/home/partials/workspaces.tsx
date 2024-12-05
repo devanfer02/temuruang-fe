@@ -7,8 +7,8 @@ export default function Workspaces() {
 
   if (workspaces == null) {
     return (
-      <div>
-        <h1>Error</h1>
+      <div className="tw-flex tw-justify-center tw-self-center tw-h-screen tw-items-center">
+        <h1>Error Occured</h1>
       </div>
     )
   }
