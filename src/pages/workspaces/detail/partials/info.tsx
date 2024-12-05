@@ -1,3 +1,4 @@
+import { useAuth } from "../../../../components/context/AuthContext"
 import { Workspace } from "../../../../types/type"
 
 interface WorkspaceInfoProps {
@@ -5,6 +6,8 @@ interface WorkspaceInfoProps {
 }
 
 export default function WorkspaceInfo({workspace}: WorkspaceInfoProps) {
+  const { isAuthenticated } = useAuth()
+
   return (
     <div className="col-lg-8">
       <div className="card mb-4">
@@ -24,8 +27,10 @@ export default function WorkspaceInfo({workspace}: WorkspaceInfoProps) {
           </ul>
         </div>
         <div className="card-footer text-center d-flex justify-content-center w-100">
-          <button className="btn btn-warning text-black mx-2" data-bs-toggle="modal"
-            data-bs-target="#bookingModal">Book Workspace</button>
+          { isAuthenticated && (
+            <button className="btn btn-warning text-black mx-2" data-bs-toggle="modal"
+              data-bs-target="#bookingModal">Book Workspace</button>
+          )}
           <button type="button" className="btn btn-primary mx-2" data-bs-toggle="modal" data-bs-target="#chatModal">
             Open Chat
           </button>

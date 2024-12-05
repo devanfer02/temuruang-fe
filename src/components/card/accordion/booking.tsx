@@ -43,10 +43,13 @@ export default function BookingAccordionCard({booking}: BookingAccordionCard) {
         <div className="accordion-body">
           <ul className="list-unstyled">
             <li>
-              <strong>Ruangan:</strong> {booking.workspace.name}
+              <strong>Worksapce:</strong> {booking.workspace.name}
             </li>
             <li>
-              <strong>Tanggal:</strong> {booking.bookedAt}
+              <strong>Date:</strong> {booking.bookedAt}
+            </li>
+            <li>
+              <strong>Duration of Use:</strong> {booking.durationOfUse} Days
             </li>
             <li>
               <strong>Status:</strong>{" "}
