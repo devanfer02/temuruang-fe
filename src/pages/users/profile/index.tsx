@@ -45,7 +45,7 @@ export default function Profile() {
         </div>
       </div>
       <div className="lg:tw-w-1/2">
-        <UserBookings/>
+        <UserBookings bookings={user.bookings}/>
       </div>
     </div>
   )

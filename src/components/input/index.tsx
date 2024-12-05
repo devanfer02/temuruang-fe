@@ -21,6 +21,13 @@ export default function Input<T extends FieldValues>({
   defaultValue = "",
   register 
 }: InputProps<T>) {
+
+  if (type === "hidden") {
+    return (
+      <input type={type} className="form-control" id="name" placeholder={placeholder} {...register(name, { required: requireMsg})} defaultValue={defaultValue}/>
+    )    
+  }
+
   return (
     <div className="mb-3 w-full">
       <label htmlFor={label} className="form-label">{label}</label>

@@ -12,3 +12,10 @@ export type UserRegisterDTO = {
 export type WorkspaceParams = {
     id: number
 }
+
+export type BookingDTO = {
+    workspaceId: number
+    bookedAt: string 
+    durationOfUse: number
+    paymentMethod: string
+}

@@ -22,8 +22,22 @@ export type Article = {
     user: User
 }
 
+export type Booking = {
+    id: number;
+    workspaceId: number 
+    userId: string 
+    status: string 
+    bookedAt: string
+    durationOfUse: string 
+    paymentMethod: string
+    createdAt: string 
+    updatedAt: string 
+    workspace: Workspace
+}
+
 export type User = {
     fullname: string 
     email: string
     createdAt: string 
+    bookings: Booking[]
 }
