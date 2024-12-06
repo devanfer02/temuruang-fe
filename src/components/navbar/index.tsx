@@ -1,15 +1,12 @@
 import { Icon } from "@iconify/react/dist/iconify.js"
 import navs from '../../constant/navs.json'
 import { useAuth } from "../context/AuthContext"
-import { useNavigate } from "react-router-dom"
 
 export default function Navbar() {
   const { user, isAuthenticated, logout } = useAuth()
-  const navigate = useNavigate()
 
   const submitLogout = () => {
     logout()
-    navigate("/", { replace: true})
   }
 
   return (

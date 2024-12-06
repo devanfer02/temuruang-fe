@@ -47,9 +47,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const logout = () => {
     setUser(null); 
     localStorage.removeItem("user"); 
+    window.location.href = '/'
   };
 
   const getToken = (): string => {
+
     return localStorage.getItem("user")!!
   }
 
@@ -64,8 +66,18 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
 export const useAuth = (): AuthContextType => {
   const context = useContext(AuthContext);
+  
   if (!context) {
     throw new Error("useAuth must be used within an AuthProvider");
   }
+
+  const { logout } = context
+
+  const currTime = Math.floor(Date.now() / 1000);
+
+  if (currTime > jwtDecode(localStorage.getItem("user")!!).exp!) {
+    logout()
+  }
+  
   return context;
 };

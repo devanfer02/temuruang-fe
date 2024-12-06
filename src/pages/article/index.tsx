@@ -10,7 +10,7 @@ export default function ArticlePage() {
 
   const queryParams = new URLSearchParams(loc.search);
 
-  const queryPage = queryParams.get('page') ?? 1
+  const queryPage = Number(queryParams.get('page')) || 1;
 
   const { data: articles, loading, error, meta } = useFetch<Article[]>(`${import.meta.env.VITE_API_URL}/api/articles?page=${queryPage}`)
 
@@ -49,7 +49,7 @@ export default function ArticlePage() {
 
             ))}
           </div>
-          <Pagination length={meta.total_pages} path="/articles" current={Number(queryPage)}/>
+          <Pagination length={meta.total_pages} path="/articles" current={queryPage}/>
         </>
       )}
     </div>

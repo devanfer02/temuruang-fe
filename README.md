@@ -32,7 +32,7 @@ git clone https://github.com/devanfer02/temuruang-be.git
 
 ```zsh
 cd ~/temuruang-be
-cp appsettings.Development.json appsettings.Development.json
+cp appsettings.Development.json appsettings.json
 ```
 
 3. Configure the `appsettings.json` file, makesure the database host is `db` not localhost
@@ -56,7 +56,7 @@ cp .env.example .env
 docker compose up -d
 ```
 
-7. Check [localhost:5050](http://localhost:5050) to verify if it's working or not
+7. Check `{ip_address}:5050` to verify if it's working or not
 
 ## 🗃️ Repositories
 
