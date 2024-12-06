@@ -75,9 +75,14 @@ export const useAuth = (): AuthContextType => {
 
   const currTime = Math.floor(Date.now() / 1000);
 
-  if (currTime > jwtDecode(localStorage.getItem("user")!!).exp!) {
-    logout()
+  if (localStorage.getItem("user") !== null) {
+    const token = localStorage.getItem("user")
+    const decoded = jwtDecode(token!)
+    if (decoded.exp && currTime > decoded.exp) {
+      logout()
+    }
   }
+
   
   return context;
 };
